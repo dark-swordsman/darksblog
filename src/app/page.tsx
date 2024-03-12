@@ -8,14 +8,6 @@ export default function Home() {
         <PostCard />
         <PostCard />
         <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
       </div>
     </PostBody>
   );
