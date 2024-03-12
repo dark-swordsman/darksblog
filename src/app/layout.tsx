@@ -14,17 +14,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-900 text-slate-100 overflow-y-hidden h-dvh flex flex-col">
-        <div className="w-full h-12 bg-slate-950 flex grow-0 shrink basis-auto">
-          <div className="w-[12in] shrink grow-0 mx-auto h-full flex justify-between">
-            <span className="h-full flex items-center px-6 text-lg font-semibold select-none">Dark's Blog</span>
-            <NavBar />
-          </div>
-        </div>
+        <Header />
         <div className="overflow-y-auto grow-shrink basis-auto h-dvh">
           {children}
         </div>
       </body>
     </html>
+  );
+}
+
+function Header() {
+  return (
+    <div className="w-full h-10 bg-slate-950 flex grow-0 shrink basis-auto">
+      <div className="w-[12in] shrink grow-0 mx-auto h-full flex justify-between">
+        <span className="h-full flex items-center px-6 text-lg font-semibold select-none">Dark's Blog</span>
+        <NavBar />
+      </div>
+    </div>
   );
 }
 
