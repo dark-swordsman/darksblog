@@ -28,7 +28,7 @@ function PostListing({ title, description, imageUrl = "/img/df-bg.jpg" }: { titl
       </div>
       <div className="flex flex-col px-4 py-2">
         <span className="text-2xl font-semibold mb-2">{title}</span>
-        <span>{description}</span>
+        <span className="text-slate-400">{description}</span>
       </div>
     </li>
   );
