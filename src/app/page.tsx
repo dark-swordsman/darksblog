@@ -1,13 +1,16 @@
 import PostBody from "@/components/BlogPost/PostBody";
+import PostListing from "@/components/PostListing";
+import CustomFetch from "@/helpers/CustomFetch";
+import { PostResponse } from "@/types/Post";
 
-export default function Home() {
+export default async function Home() {
+  const response: PostResponse = await (await CustomFetch("/api/posts")).json();
+
   return (
     <PostBody title="Welcome to my Blog!">
       <span className="text-3xl">Recent Posts</span>
-      <div className="grid grid-cols-3 gap-4 mt-6">
-        <PostCard />
-        <PostCard />
-        <PostCard />
+      <div className="flex flex-col gap-4 mt-6">
+        {response.posts.map(({ title, description, url }, i) => <PostListing href={`/post/${url}`} title={title} description={description} />)}
       </div>
     </PostBody>
   );
