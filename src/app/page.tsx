@@ -16,6 +16,8 @@ export default async function Home() {
   );
 }
 
+
+// deprecated component, but keeping just for reference
 function PostCard(
   { 
     imageUrl = "/img/df-bg.jpg", 
