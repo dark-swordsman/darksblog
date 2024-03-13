@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PostResponse } from "../types/Post";
+import { PostResponse } from "@/types/Post";
 
 export default async function Posts() {
   const response: PostResponse = await (await fetch("http://localhost:3000/api/posts")).json();

@@ -1,4 +1,4 @@
-import { Post } from "@/app/types/Post";
+import { Post } from "@/types/Post";
 import { NextResponse } from "next/server";
 
 export async function GET() {
