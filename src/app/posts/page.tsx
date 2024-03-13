@@ -1,35 +1,34 @@
-import Image from "next/image";
+import Link from "next/link";
+import { PostResponse } from "../types/Post";
 
-export default function Posts() {
+export default async function Posts() {
+  const response: PostResponse = await (await fetch("http://localhost:3000/api/posts")).json();
+
   return (
     <div>
       <span className="text-3xl font-semibold">Posts</span>
       <ul className="flex flex-col gap-4 w-full shrink mt-10">
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
-        <PostListing title="test" description="I am doing a test of the length of the description, by coming up with a really long description. This hopefully will demonstrate how the text looks when it is really long on the list item." />
+        {response.posts.map(({ title, description, url }, i) => <PostListing key={i} href={`/post/${url}`}  title={title} description={description} /> )}
       </ul>
     </div>
   );
 }
 
-function PostListing({ title, description, imageUrl = "/img/df-bg.jpg" }: { title: string, description: string, imageUrl?: string }) {
+function PostListing(
+  { title, description, href, imageUrl = "/img/df-bg.jpg" }: 
+  { title: string, description: string, href: string, imageUrl?: string }
+) {
   return (
-    <li className="h-40 w-full rounded-lg bg-slate-950 overflow-clip group flex flex-row hover:bg-slate-800 cursor-pointer duration-75">
-      <div className="overflow-clip w-72 h-full group-hover:brightness-110 duration-75">
-        <img src={imageUrl} className="h-full object-cover"/>
-      </div>
-      <div className="flex flex-col px-4 py-2">
-        <span className="text-2xl font-semibold mb-2">{title}</span>
-        <span className="text-slate-400">{description}</span>
-      </div>
+    <li className="h-40 w-full rounded-lg bg-slate-950 overflow-clip group hover:bg-slate-800 hover:-translate-y-[1px] cursor-pointer duration-75">
+      <Link href={href} className="flex flex-row h-full w-full">
+        <div className="overflow-clip w-48 h-full shrink-0 group-hover:brightness-110 duration-75">
+          <img src={imageUrl} className="h-full object-cover"/>
+        </div>
+        <div className="flex flex-col px-6 py-3">
+          <span className="text-2xl font-semibold mb-2">{title}</span>
+          <span className="text-slate-400">{description}</span>
+        </div>
+      </Link>
     </li>
   );
 }
