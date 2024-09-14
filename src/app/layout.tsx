@@ -12,7 +12,7 @@ export default function RootLayout({
       <body className="bg-zinc-900 text-sky-200">
         <Navbar />
         <DarkContainer>
-          <div className="my-10">
+          <div className="my-10 px-6 w-full">
             {children}
           </div>
         </DarkContainer>
