@@ -12,8 +12,8 @@ const nextConfig = {
  
   // Optional: Change the output directory `out` -> `dist`
   distDir: 'dist',
-  basePath: '/',
-  assetPrefix: '/',
+  basePath: process.env.NODE_ENV == "production" ? "/" : "",
+  assetPrefix: process.env.NODE_ENV == "production" ? "/" : "",
 };
  
 module.exports = nextConfig;

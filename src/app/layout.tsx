@@ -1,3 +1,5 @@
+import DarkContainer from "../components/DarkContainer/DarkContainer";
+import Navbar from "../components/Navbar/Navbar";
 import "./globals.css";
 
 export default function RootLayout({
@@ -7,7 +9,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-zinc-900 text-sky-200">{children}</body>
+      <body className="bg-zinc-900 text-sky-200">
+        <Navbar />
+        <DarkContainer>
+          <div className="my-10">
+            {children}
+          </div>
+        </DarkContainer>
+      </body>
     </html>
   )
 }
