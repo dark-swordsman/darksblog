@@ -1,3 +1,4 @@
+import Link from "next/link"
 import DarkContainer from "../DarkContainer/DarkContainer"
 
 export default function Navbar() {
@@ -6,18 +7,18 @@ export default function Navbar() {
       <DarkContainer>
         <span className="self-center text-xl">Dark's Blog</span>
         <div className="flex h-full">
-          <NavItem>Home</NavItem>
-          <NavItem>Posts</NavItem>
+          <NavItem href="/">Home</NavItem>
+          <NavItem href="/posts">Posts</NavItem>
         </div>
       </DarkContainer>
     </div>
   )
 }
 
-function NavItem({ children }: { children: React.ReactNode }) {
+function NavItem({ children, href }: { children: React.ReactNode, href: string }) {
   return (
-    <div className="flex items-center h-full px-6 hover:bg-slate-700 active:bg-slate-600 select-none cursor-pointer">
+    <Link href={href} className="flex items-center h-full px-6 hover:bg-slate-700 active:bg-slate-600 select-none cursor-pointer">
       {children}
-    </div>
+    </Link>
   )
 }
